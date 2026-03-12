@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 1. Tailwind Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- 3. YOUR CUSTOM CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>AutoMaster Workshop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>About Our Workshop | AutoMaster</title>
+</head>
+<body class="bg-slate-50">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">🔧 AutoMaster</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <a href="spares.html" class="hover:text-blue-600">Spare Parts</a>
+                <a href="about.html" class="text-blue-600 font-bold border-b-2 border-blue-600">About</a>
+                <a href="contact.html" class="hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HISTORY -->
+    <section class="py-20 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800" alt="Workshop History" class="rounded-2xl shadow-2xl">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold text-slate-900 mb-6">Quality Service Since 2010</h2>
+                <p class="text-slate-600 text-lg mb-4">What started as a single-bay garage has grown into the region's most trusted automotive center. We believe in transparency—no hidden costs, just honest mechanical work.</p>
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-blue-600">
+                        <h4 class="font-bold text-2xl">10k+</h4>
+                        <p class="text-sm text-slate-500">Cars Fixed</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border-l-4 border-blue-600">
+                        <h4 class="font-bold text-2xl">100%</h4>
+                        <p class="text-sm text-slate-500">Genuine Spares</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: STAFF -->
+    <section class="bg-slate-900 py-20 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">The Men Behind the Machines</h2>
+                <p class="text-slate-400">Our team consists of ASE certified master technicians.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Mechanic 1 -->
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&q=80&w=300" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-blue-600 object-cover staff-photo">
+                    <h4 class="text-xl font-bold">Mike "The Wrench"</h4>
+                    <p class="text-blue-400">Head Mechanic</p>
+                </div>
+                <!-- Mechanic 2 -->
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-blue-600 object-cover staff-photo">
+                    <h4 class="text-xl font-bold">Sarah Jenkins</h4>
+                    <p class="text-blue-400">Electrical Specialist</p>
+                </div>
+                <!-- Mechanic 3 -->
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-blue-600 object-cover staff-photo">
+                    <h4 class="text-xl font-bold">David Chen</h4>
+                    <p class="text-blue-400">Spare Parts Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white py-10 text-center border-t">
+        <p class="text-slate-500">© 2026 AutoMaster Workshop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+/* style.css */
+
+/* Custom Workshop Branding */
+:root {
+    --workshop-blue: #2563eb;
+    --workshop-dark: #0f172a;
+    --workshop-accent: #3b82f6;
+}
+
+/* Smooth Scrolling for the whole site */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Card Hover Effects */
+.part-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.part-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--workshop-blue);
+}
+
+/* Staff Image Styling */
+.staff-photo {
+    transition: transform 0.5s ease;
+}
+
+.staff-photo:hover {
+    transform: scale(1.05);
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--workshop-dark);
+    border-radius: 10px;
+}
+/* Video Section Styles */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7); /* Dark tint so text is readable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
