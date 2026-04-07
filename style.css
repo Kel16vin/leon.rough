@@ -2,7 +2,7 @@
 
 /* Custom Workshop Branding */
 :root {
-    --workshop-blue: #2563eb;
+    --workshop-blue: #1e40af; /* Deep Blue from Logo */
     --workshop-dark: #0f172a;
     --workshop-accent: #3b82f6;
 }
