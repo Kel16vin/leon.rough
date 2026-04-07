@@ -2,9 +2,9 @@
 
 /* Custom Workshop Branding */
 :root {
-    --workshop-blue: #1e40af; /* Deep Blue from Logo */
+    --workshop-blue: #475569; /* Pale Blue Grey from Logo */
     --workshop-dark: #0f172a;
-    --workshop-accent: #3b82f6;
+    --workshop-accent: #334155;
 }
 
 /* Smooth Scrolling for the whole site */
