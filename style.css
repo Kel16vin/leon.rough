@@ -10,15 +10,31 @@
 
 /* Brightening Enhancements */
 .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glow-section {
     position: relative;
     background: radial-gradient(circle at top right, var(--workshop-glow) 0%, transparent 40%),
                 radial-gradient(circle at bottom left, var(--workshop-glow) 0%, transparent 40%);
+}
+
+.bg-pattern {
+    position: relative;
+}
+
+.bg-pattern::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1534398079543-7ae6d016b86a?auto=format&fit=crop&q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .text-glow {
