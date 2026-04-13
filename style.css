@@ -38,7 +38,7 @@
 }
 
 .text-glow {
-    text-shadow: 0 0 10px var(--workshop-glow);
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px var(--workshop-glow);
 }
 
 /* Card Improvements */
@@ -80,28 +80,11 @@
 .video-container {
     position: relative;
     width: 100%;
-    height: 500px;
-    overflow: hidden;
+    height: 300px;
 }
 
-.video-container video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-}
-
-.video-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.7); /* Dark tint so text is readable */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+@media (min-width: 768px) {
+    .video-container {
+        height: 500px;
+    }
 }
