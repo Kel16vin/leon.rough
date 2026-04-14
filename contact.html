@@ -101,37 +101,88 @@
 
                 <!-- RIGHT COLUMN: Booking Form -->
                 <div class="lg:col-span-2 glass p-6 md:p-10 rounded-3xl shadow-xl border border-white/5 reveal" data-gsap-delay="0.2">
-                    <h3 class="text-xl md:text-2xl font-bold mb-6 text-white text-glow">Request a Repair/Quote</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 text-white text-glow">Book Your Service Appointment</h3>
                     <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Full Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label class="font-semibold text-slate-300">Full Name *</label>
+                            <input type="text" placeholder="John Doe" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Phone Number</label>
-                            <input type="tel" placeholder="+123..." class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label class="font-semibold text-slate-300">Phone Number *</label>
+                            <input type="tel" placeholder="+256..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Vehicle Model</label>
-                            <input type="text" placeholder="Toyota RAV4 (2020)" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label class="font-semibold text-slate-300">Email Address</label>
+                            <input type="email" placeholder="john@example.com" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Service Needed</label>
+                            <label class="font-semibold text-slate-300">Preferred Contact Method</label>
                             <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900">Phone Call</option>
+                                <option class="bg-slate-900">WhatsApp</option>
+                                <option class="bg-slate-900">Email</option>
+                                <option class="bg-slate-900">SMS</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">Vehicle Make & Model *</label>
+                            <input type="text" placeholder="Toyota RAV4 (2020)" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">License Plate Number</label>
+                            <input type="text" placeholder="UAB 123D" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">Service Type *</label>
+                            <select required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900" disabled selected>Select Service</option>
                                 <option class="bg-slate-900">Oil Change & Service</option>
                                 <option class="bg-slate-900">Brake Repair</option>
                                 <option class="bg-slate-900">Engine Diagnostics</option>
+                                <option class="bg-slate-900">Transmission Service</option>
+                                <option class="bg-slate-900">Electrical System Repair</option>
+                                <option class="bg-slate-900">Suspension & Steering</option>
+                                <option class="bg-slate-900">Air Conditioning Service</option>
+                                <option class="bg-slate-900">Tire Replacement</option>
                                 <option class="bg-slate-900">Spare Parts Purchase</option>
+                                <option class="bg-slate-900">General Maintenance</option>
                                 <option class="bg-slate-900">Other</option>
                             </select>
                         </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">Preferred Date</label>
+                            <input type="date" min="<?php echo date('Y-m-d'); ?>" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">Preferred Time</label>
+                            <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900">Morning (8:00 AM - 12:00 PM)</option>
+                                <option class="bg-slate-900">Afternoon (12:00 PM - 5:00 PM)</option>
+                                <option class="bg-slate-900">Anytime</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-slate-300">Urgency Level</label>
+                            <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900">Routine Service</option>
+                                <option class="bg-slate-900">Minor Issue</option>
+                                <option class="bg-slate-900">Urgent Repair Needed</option>
+                                <option class="bg-slate-900">Emergency - Vehicle Not Drivable</option>
+                            </select>
+                        </div>
                         <div class="md:col-span-2 space-y-2">
-                            <label class="font-semibold text-slate-300">Detailed Description of Issue</label>
-                            <textarea rows="4" placeholder="Describe what's wrong with your vehicle..." class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
+                            <label class="font-semibold text-slate-300">Detailed Description of Issue/Service Needed *</label>
+                            <textarea rows="4" placeholder="Please describe the problem, symptoms, or service you require in detail..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2 accent-blue-600">
+                                <span class="text-slate-300 text-sm">I agree to receive updates about my booking via phone/email</span>
+                            </label>
                         </div>
                         <div class="md:col-span-2">
                             <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(71,85,105,0.3)]">
-                                Submit Appointment Request
+                                <i class="fas fa-calendar-check mr-2"></i>Book Appointment Now
                             </button>
                         </div>
                     </form>
