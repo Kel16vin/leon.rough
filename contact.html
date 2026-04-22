@@ -124,30 +124,47 @@
                                 <option class="bg-slate-900">SMS</option>
                             </select>
                         </div>
-                        <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Vehicle Make & Model *</label>
-                            <input type="text" placeholder="Toyota RAV4 (2020)" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">License Plate Number</label>
-                            <input type="text" placeholder="UAB 123D" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                        </div>
+                       
                         <div class="space-y-2">
                             <label class="font-semibold text-slate-300">Service Type *</label>
                             <select required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                                 <option class="bg-slate-900" disabled selected>Select Service</option>
-                                <option class="bg-slate-900">Oil Change & Service</option>
-                                <option class="bg-slate-900">Brake Repair</option>
-                                <option class="bg-slate-900">Engine Diagnostics</option>
-                                <option class="bg-slate-900">Transmission Service</option>
-                                <option class="bg-slate-900">Electrical System Repair</option>
-                                <option class="bg-slate-900">Suspension & Steering</option>
-                                <option class="bg-slate-900">Air Conditioning Service</option>
-                                <option class="bg-slate-900">Tire Replacement</option>
-                                <option class="bg-slate-900">Spare Parts Purchase</option>
-                                <option class="bg-slate-900">General Maintenance</option>
+                                <optgroup label="AUTOMOTIVE MAINTENANCE" class="bg-slate-900 text-blue-400">
+                                    <option class="bg-slate-900">Oil Change & Service</option>
+                                    <option class="bg-slate-900">Brake Repair</option>
+                                    <option class="bg-slate-900">Engine Diagnostics</option>
+                                    <option class="bg-slate-900">Transmission Service</option>
+                                    <option class="bg-slate-900">Electrical System Repair</option>
+                                    <option class="bg-slate-900">Suspension & Steering</option>
+                                    <option class="bg-slate-900">Air Conditioning Service</option>
+                                    <option class="bg-slate-900">Tire Replacement</option>
+                                    <option class="bg-slate-900">Spare Parts Purchase</option>
+                                    <option class="bg-slate-900">Body Works & Panel Beating</option>
+                                    <option class="bg-slate-900">Spray Painting</option>
+                                    <option class="bg-slate-900">Car/Fleet Maintenance</option>
+                                    <option class="bg-slate-900">General Automotive Maintenance</option>
+                                </optgroup>
+                                <optgroup label="POWER & ENERGY SOLUTIONS" class="bg-slate-900 text-blue-400">
+                                    <option class="bg-slate-900">Hybrid Solar Power Systems Installation</option>
+                                    <option class="bg-slate-900">Hybrid Solar Power Systems Maintenance</option>
+                                    <option class="bg-slate-900">Generator Installation</option>
+                                    <option class="bg-slate-900">Generator Servicing</option>
+                                    <option class="bg-slate-900">Generator Repair</option>
+                                </optgroup>
+                                <optgroup label="WATER & IRRIGATION SERVICES" class="bg-slate-900 text-blue-400">
+                                    <option class="bg-slate-900">Production Wells Installation</option>
+                                    <option class="bg-slate-900">Production Wells Maintenance</option>
+                                    <option class="bg-slate-900">Shallow Wells Drilling</option>
+                                    <option class="bg-slate-900">Bore Holes Drilling</option>
+                                    <option class="bg-slate-900">Irrigation System Installation</option>
+                                    <option class="bg-slate-900">Irrigation System Maintenance</option>
+                                </optgroup>
                                 <option class="bg-slate-900">Other</option>
                             </select>
+                        </div>
+                        <div class="space-y-2 hidden" id="customServiceField">
+                            <label class="font-semibold text-slate-300">Please Specify Your Service *</label>
+                            <input type="text" id="customServiceInput" placeholder="Describe the service you need..." class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-slate-300">Preferred Date</label>
@@ -167,7 +184,7 @@
                                 <option class="bg-slate-900">Routine Service</option>
                                 <option class="bg-slate-900">Minor Issue</option>
                                 <option class="bg-slate-900">Urgent Repair Needed</option>
-                                <option class="bg-slate-900">Emergency - Vehicle Not Drivable</option>
+                                <option class="bg-slate-900">Emergency - Machine not Functional</option>
                             </select>
                         </div>
                         <div class="md:col-span-2 space-y-2">
@@ -236,6 +253,22 @@
                 ease: "power2.out",
                 delay: elem.dataset.gsapDelay || 0
             });
+        });
+
+        // Show/hide custom service field
+        const serviceSelect = document.querySelector('select[required]');
+        const customServiceField = document.getElementById('customServiceField');
+        const customServiceInput = document.getElementById('customServiceInput');
+
+        serviceSelect.addEventListener('change', function() {
+            if (this.value === 'Other') {
+                customServiceField.classList.remove('hidden');
+                customServiceInput.required = true;
+            } else {
+                customServiceField.classList.add('hidden');
+                customServiceInput.required = false;
+                customServiceInput.value = '';
+            }
         });
     </script>
 
