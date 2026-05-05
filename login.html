@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-removebg-preview.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Admin Login | Elite Maintenance Services Ltd.</title>
+</head>
+<body class="bg-black text-white min-h-screen flex items-center justify-center px-4">
+  <div class="glass rounded-3xl border border-white/10 p-10 w-full max-w-lg shadow-xl">
+    <div class="text-center mb-8">
+      <img src="logo-removebg-preview.png" alt="Elite Maintenance Services Ltd. Logo" class="mx-auto h-20 mb-4">
+      <h1 class="text-3xl font-bold text-white">Admin Login</h1>
+      <p class="text-slate-400 mt-2">Enter your username and password to access booking records.</p>
+    </div>
+
+    <div id="loginError" class="hidden mb-6 rounded-xl bg-red-500/10 border border-red-500 text-red-200 px-4 py-3"></div>
+
+    <form action="/login" method="POST" class="space-y-6">
+      <div>
+        <label for="username" class="block text-slate-300 mb-2 font-semibold">Username</label>
+        <input id="username" name="username" type="text" required class="w-full rounded-2xl bg-black/60 border border-slate-800 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="password" class="block text-slate-300 mb-2 font-semibold">Password</label>
+        <input id="password" name="password" type="password" required class="w-full rounded-2xl bg-black/60 border border-slate-800 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <button type="submit" class="w-full rounded-2xl bg-blue-600 py-4 text-white font-bold hover:bg-blue-700 transition">Sign In</button>
+    </form>
+
+    <p class="text-slate-500 text-sm mt-6">Use the admin credentials configured in the backend environment or default values in `server.js`.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const loginError = document.getElementById('loginError');
+    if (params.get('error') === '1') {
+      loginError.textContent = 'Invalid credentials. Please try again.';
+      loginError.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

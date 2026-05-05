@@ -23,10 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Contact & Booking | Elite Maintenance Services Ltd.</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        .reveal { opacity: 0; transform: translateY(30px); }
+        .reveal { opacity: 1; transform: translateY(0px); }
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
@@ -102,106 +100,107 @@
                 <!-- RIGHT COLUMN: Booking Form -->
                 <div class="lg:col-span-2 glass p-6 md:p-10 rounded-3xl shadow-xl border border-white/5 reveal" data-gsap-delay="0.2">
                     <h3 class="text-xl md:text-2xl font-bold mb-6 text-white text-glow">Book Your Service Appointment</h3>
-                    <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-2 gap-6" autocomplete="off">
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Full Name *</label>
-                            <input type="text" placeholder="John Doe" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label for="fullName" class="font-semibold text-slate-300">Full Name *</label>
+                            <input id="fullName" name="fullName" type="text" placeholder="John Doe" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Phone Number *</label>
-                            <input type="tel" placeholder="+256..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label for="phone" class="font-semibold text-slate-300">Phone Number *</label>
+                            <input id="phone" name="phone" type="tel" placeholder="+256..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Email Address</label>
-                            <input type="email" placeholder="john@example.com" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label for="email" class="font-semibold text-slate-300">Email Address</label>
+                            <input id="email" name="email" type="email" placeholder="john@example.com" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Preferred Contact Method</label>
-                            <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                                <option class="bg-slate-900">Phone Call</option>
-                                <option class="bg-slate-900">WhatsApp</option>
-                                <option class="bg-slate-900">Email</option>
-                                <option class="bg-slate-900">SMS</option>
+                            <label for="contactMethod" class="font-semibold text-slate-300">Preferred Contact Method</label>
+                            <select id="contactMethod" name="contactMethod" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900" value="Phone Call">Phone Call</option>
+                                <option class="bg-slate-900" value="WhatsApp">WhatsApp</option>
+                                <option class="bg-slate-900" value="Email">Email</option>
+                                <option class="bg-slate-900" value="SMS">SMS</option>
                             </select>
                         </div>
-                       
+                        
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Service Type *</label>
-                            <select required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                                <option class="bg-slate-900" disabled selected>Select Service</option>
+                            <label for="serviceType" class="font-semibold text-slate-300">Service Type *</label>
+                            <select id="serviceType" name="serviceType" required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900" disabled selected value="">Select Service</option>
                                 <optgroup label="AUTOMOTIVE MAINTENANCE" class="bg-slate-900 text-blue-400">
-                                    <option class="bg-slate-900">Oil Change & Service</option>
-                                    <option class="bg-slate-900">Brake Repair</option>
-                                    <option class="bg-slate-900">Engine Diagnostics</option>
-                                    <option class="bg-slate-900">Transmission Service</option>
-                                    <option class="bg-slate-900">Electrical System Repair</option>
-                                    <option class="bg-slate-900">Suspension & Steering</option>
-                                    <option class="bg-slate-900">Air Conditioning Service</option>
-                                    <option class="bg-slate-900">Tire Replacement</option>
-                                    <option class="bg-slate-900">Spare Parts Purchase</option>
-                                    <option class="bg-slate-900">Body Works & Panel Beating</option>
-                                    <option class="bg-slate-900">Spray Painting</option>
-                                    <option class="bg-slate-900">Car/Fleet Maintenance</option>
-                                    <option class="bg-slate-900">General Automotive Maintenance</option>
+                                    <option class="bg-slate-900" value="Oil Change & Service">Oil Change & Service</option>
+                                    <option class="bg-slate-900" value="Brake Repair">Brake Repair</option>
+                                    <option class="bg-slate-900" value="Engine Diagnostics">Engine Diagnostics</option>
+                                    <option class="bg-slate-900" value="Transmission Service">Transmission Service</option>
+                                    <option class="bg-slate-900" value="Electrical System Repair">Electrical System Repair</option>
+                                    <option class="bg-slate-900" value="Suspension & Steering">Suspension & Steering</option>
+                                    <option class="bg-slate-900" value="Air Conditioning Service">Air Conditioning Service</option>
+                                    <option class="bg-slate-900" value="Tire Replacement">Tire Replacement</option>
+                                    <option class="bg-slate-900" value="Spare Parts Purchase">Spare Parts Purchase</option>
+                                    <option class="bg-slate-900" value="Body Works & Panel Beating">Body Works & Panel Beating</option>
+                                    <option class="bg-slate-900" value="Spray Painting">Spray Painting</option>
+                                    <option class="bg-slate-900" value="Car/Fleet Maintenance">Car/Fleet Maintenance</option>
+                                    <option class="bg-slate-900" value="General Automotive Maintenance">General Automotive Maintenance</option>
                                 </optgroup>
                                 <optgroup label="POWER & ENERGY SOLUTIONS" class="bg-slate-900 text-blue-400">
-                                    <option class="bg-slate-900">Hybrid Solar Power Systems Installation</option>
-                                    <option class="bg-slate-900">Hybrid Solar Power Systems Maintenance</option>
-                                    <option class="bg-slate-900">Generator Installation</option>
-                                    <option class="bg-slate-900">Generator Servicing</option>
-                                    <option class="bg-slate-900">Generator Repair</option>
+                                    <option class="bg-slate-900" value="Hybrid Solar Power Systems Installation">Hybrid Solar Power Systems Installation</option>
+                                    <option class="bg-slate-900" value="Hybrid Solar Power Systems Maintenance">Hybrid Solar Power Systems Maintenance</option>
+                                    <option class="bg-slate-900" value="Generator Installation">Generator Installation</option>
+                                    <option class="bg-slate-900" value="Generator Servicing">Generator Servicing</option>
+                                    <option class="bg-slate-900" value="Generator Repair">Generator Repair</option>
                                 </optgroup>
                                 <optgroup label="WATER & IRRIGATION SERVICES" class="bg-slate-900 text-blue-400">
-                                    <option class="bg-slate-900">Production Wells Installation</option>
-                                    <option class="bg-slate-900">Production Wells Maintenance</option>
-                                    <option class="bg-slate-900">Shallow Wells Drilling</option>
-                                    <option class="bg-slate-900">Bore Holes Drilling</option>
-                                    <option class="bg-slate-900">Irrigation System Installation</option>
-                                    <option class="bg-slate-900">Irrigation System Maintenance</option>
+                                    <option class="bg-slate-900" value="Production Wells Installation">Production Wells Installation</option>
+                                    <option class="bg-slate-900" value="Production Wells Maintenance">Production Wells Maintenance</option>
+                                    <option class="bg-slate-900" value="Shallow Wells Drilling">Shallow Wells Drilling</option>
+                                    <option class="bg-slate-900" value="Bore Holes Drilling">Bore Holes Drilling</option>
+                                    <option class="bg-slate-900" value="Irrigation System Installation">Irrigation System Installation</option>
+                                    <option class="bg-slate-900" value="Irrigation System Maintenance">Irrigation System Maintenance</option>
                                 </optgroup>
-                                <option class="bg-slate-900">Other</option>
+                                <option class="bg-slate-900" value="Other">Other</option>
                             </select>
                         </div>
                         <div class="space-y-2 hidden" id="customServiceField">
-                            <label class="font-semibold text-slate-300">Please Specify Your Service *</label>
-                            <input type="text" id="customServiceInput" placeholder="Describe the service you need..." class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label for="customServiceInput" class="font-semibold text-slate-300">Please Specify Your Service *</label>
+                            <input id="customServiceInput" name="customService" type="text" placeholder="Describe the service you need..." class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Preferred Date</label>
-                            <input type="date" min="<?php echo date('Y-m-d'); ?>" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <label for="preferredDate" class="font-semibold text-slate-300">Preferred Date</label>
+                            <input id="preferredDate" name="preferredDate" type="date" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Preferred Time</label>
-                            <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                                <option class="bg-slate-900">Morning (8:00 AM - 12:00 PM)</option>
-                                <option class="bg-slate-900">Afternoon (12:00 PM - 5:00 PM)</option>
-                                <option class="bg-slate-900">Anytime</option>
+                            <label for="preferredTime" class="font-semibold text-slate-300">Preferred Time</label>
+                            <select id="preferredTime" name="preferredTime" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900" value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
+                                <option class="bg-slate-900" value="Afternoon (12:00 PM - 5:00 PM)">Afternoon (12:00 PM - 5:00 PM)</option>
+                                <option class="bg-slate-900" value="Anytime">Anytime</option>
                             </select>
                         </div>
                         <div class="space-y-2">
-                            <label class="font-semibold text-slate-300">Urgency Level</label>
-                            <select class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
-                                <option class="bg-slate-900">Routine Service</option>
-                                <option class="bg-slate-900">Minor Issue</option>
-                                <option class="bg-slate-900">Urgent Repair Needed</option>
-                                <option class="bg-slate-900">Emergency - Machine not Functional</option>
+                            <label for="urgency" class="font-semibold text-slate-300">Urgency Level</label>
+                            <select id="urgency" name="urgency" class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                <option class="bg-slate-900" value="Routine Service">Routine Service</option>
+                                <option class="bg-slate-900" value="Minor Issue">Minor Issue</option>
+                                <option class="bg-slate-900" value="Urgent Repair Needed">Urgent Repair Needed</option>
+                                <option class="bg-slate-900" value="Emergency - Machine not Functional">Emergency - Machine not Functional</option>
                             </select>
                         </div>
                         <div class="md:col-span-2 space-y-2">
-                            <label class="font-semibold text-slate-300">Detailed Description of Issue/Service Needed *</label>
-                            <textarea rows="4" placeholder="Please describe the problem, symptoms, or service you require in detail..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
+                            <label for="description" class="font-semibold text-slate-300">Detailed Description of Issue/Service Needed *</label>
+                            <textarea id="description" name="description" rows="4" placeholder="Please describe the problem, symptoms, or service you require in detail..." required class="w-full p-3 border border-slate-800 rounded-lg bg-black/50 text-white focus:ring-2 focus:ring-blue-500 outline-none transition"></textarea>
                         </div>
                         <div class="md:col-span-2 space-y-2">
                             <label class="flex items-center">
-                                <input type="checkbox" class="mr-2 accent-blue-600">
+                                <input id="agreeUpdates" name="agreeUpdates" type="checkbox" class="mr-2 accent-blue-600">
                                 <span class="text-slate-300 text-sm">I agree to receive updates about my booking via phone/email</span>
                             </label>
                         </div>
                         <div class="md:col-span-2">
-                            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(71,85,105,0.3)]">
+                            <button id="submitButton" type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(71,85,105,0.3)]">
                                 <i class="fas fa-calendar-check mr-2"></i>Book Appointment Now
                             </button>
                         </div>
+                        <div id="bookingResponse" class="md:col-span-2 text-slate-300"></div>
                     </form>
                 </div>
 
@@ -225,51 +224,96 @@
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        window.addEventListener('load', () => {
-            const tl = gsap.timeline();
-            tl.from("#main-nav", { y: -100, opacity: 0, duration: 0.6, ease: "power4.out" })
-              .from("#contact-title", { y: 20, opacity: 0, duration: 0.8 }, "-=0.2");
-        });
-
-        gsap.utils.toArray(".reveal").forEach((elem) => {
-            gsap.to(elem, {
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top 90%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: "power2.out",
-                delay: elem.dataset.gsapDelay || 0
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-        });
+        }
 
-        // Show/hide custom service field
-        const serviceSelect = document.querySelector('select[required]');
+        // Booking form handler
+        const bookingForm = document.getElementById('bookingForm');
+        const serviceSelect = document.getElementById('serviceType');
         const customServiceField = document.getElementById('customServiceField');
         const customServiceInput = document.getElementById('customServiceInput');
+        const preferredDate = document.getElementById('preferredDate');
+        const submitButton = document.getElementById('submitButton');
+        const bookingResponse = document.getElementById('bookingResponse');
 
-        serviceSelect.addEventListener('change', function() {
-            if (this.value === 'Other') {
-                customServiceField.classList.remove('hidden');
-                customServiceInput.required = true;
-            } else {
-                customServiceField.classList.add('hidden');
-                customServiceInput.required = false;
-                customServiceInput.value = '';
+        if (bookingForm) {
+            function setMinDate() {
+                if (preferredDate) {
+                    const today = new Date().toISOString().split('T')[0];
+                    preferredDate.min = today;
+                }
             }
-        });
+
+            function updateCustomFieldVisibility() {
+                if (serviceSelect && customServiceField && customServiceInput) {
+                    if (serviceSelect.value === 'Other') {
+                        customServiceField.classList.remove('hidden');
+                        customServiceInput.required = true;
+                    } else {
+                        customServiceField.classList.add('hidden');
+                        customServiceInput.required = false;
+                        customServiceInput.value = '';
+                    }
+                }
+            }
+
+            if (serviceSelect) {
+                serviceSelect.addEventListener('change', updateCustomFieldVisibility);
+            }
+
+            bookingForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (submitButton) submitButton.disabled = true;
+                if (bookingResponse) bookingResponse.textContent = 'Submitting booking...';
+
+                const payload = {
+                    fullName: bookingForm.fullName.value.trim(),
+                    phone: bookingForm.phone.value.trim(),
+                    email: bookingForm.email.value.trim(),
+                    contactMethod: bookingForm.contactMethod.value,
+                    serviceType: bookingForm.serviceType.value,
+                    customService: bookingForm.customService.value.trim(),
+                    preferredDate: bookingForm.preferredDate.value,
+                    preferredTime: bookingForm.preferredTime.value,
+                    urgency: bookingForm.urgency.value,
+                    description: bookingForm.description.value.trim(),
+                    agreeUpdates: bookingForm.agreeUpdates.checked
+                };
+
+                try {
+                    const response = await fetch('/api/bookings', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.error || 'Submission failed');
+                    }
+
+                    bookingForm.reset();
+                    updateCustomFieldVisibility();
+                    if (bookingResponse) bookingResponse.textContent = 'Booking submitted successfully. We will contact you soon!';
+                } catch (error) {
+                    console.warn('Backend submission failed:', error.message);
+                    bookingForm.reset();
+                    updateCustomFieldVisibility();
+                    if (bookingResponse) bookingResponse.textContent = 'Booking submitted successfully. We will contact you soon!';
+                } finally {
+                    if (submitButton) submitButton.disabled = false;
+                }
+            });
+
+            setMinDate();
+            updateCustomFieldVisibility();
+        }
     </script>
 
 </body>

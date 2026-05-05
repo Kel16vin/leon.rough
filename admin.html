@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-removebg-preview.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Booking Admin | Elite Maintenance Services Ltd.</title>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+  <section class="min-h-screen py-12 px-4 md:px-8">
+    <div class="container mx-auto">
+      <div class="glass rounded-3xl border border-white/5 p-8 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+          <div>
+            <h1 class="text-3xl font-bold text-white">Booking Submissions</h1>
+            <p class="text-slate-400 mt-2">View all appointments submitted through the booking form.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="refreshButton" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <a href="/logout" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 transition text-slate-200">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+
+        <div id="statusMessage" class="text-slate-300 mb-6"></div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left border-collapse bg-slate-950 rounded-3xl overflow-hidden">
+            <thead class="bg-slate-900 text-slate-300 uppercase text-xs tracking-wider">
+              <tr>
+                <th class="px-4 py-3">ID</th>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Phone</th>
+                <th class="px-4 py-3">Service</th>
+                <th class="px-4 py-3">Preferred Date</th>
+                <th class="px-4 py-3">Urgency</th>
+                <th class="px-4 py-3">Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="bookingRows" class="bg-slate-950 text-slate-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const bookingRows = document.getElementById('bookingRows');
+    const statusMessage = document.getElementById('statusMessage');
+    const refreshButton = document.getElementById('refreshButton');
+
+    function formatDate(value) {
+      return value ? new Date(value).toLocaleString('en-GB', {
+        year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+      }) : '';
+    }
+
+    function renderRows(bookings) {
+      if (!bookings.length) {
+        bookingRows.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-slate-400">No bookings found.</td></tr>';
+        return;
+      }
+
+      bookingRows.innerHTML = bookings.map(booking => `
+        <tr class="border-t border-white/10 hover:bg-slate-900/80">
+          <td class="px-4 py-4 text-slate-300">${booking.id}</td>
+          <td class="px-4 py-4">${booking.fullName}</td>
+          <td class="px-4 py-4">${booking.phone}</td>
+          <td class="px-4 py-4">${booking.serviceType}${booking.customService ? ` — ${booking.customService}` : ''}</td>
+          <td class="px-4 py-4">${booking.preferredDate || 'N/A'}</td>
+          <td class="px-4 py-4">${booking.urgency || 'N/A'}</td>
+          <td class="px-4 py-4">${formatDate(booking.createdAt)}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function loadBookings() {
+      statusMessage.textContent = 'Loading bookings...';
+      try {
+        const response = await fetch('/api/bookings');
+        if (!response.ok) throw new Error('Failed to load bookings');
+        const bookings = await response.json();
+        renderRows(bookings);
+        statusMessage.textContent = `Loaded ${bookings.length} booking${bookings.length === 1 ? '' : 's'}.`;
+      } catch (error) {
+        statusMessage.textContent = 'Unable to load bookings. Check the backend server.';
+        bookingRows.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-red-400">Error loading bookings.</td></tr>';
+      }
+    }
+
+    refreshButton.addEventListener('click', loadBookings);
+    loadBookings();
+  </script>
+</body>
+</html>
