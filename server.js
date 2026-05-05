@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
 const cors = require('cors');
 const session = require('express-session');
 
@@ -23,15 +23,34 @@ app.use(
   })
 );
 
+// Initialize database
+const db = new Database(dbFile);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullName TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT,
+    contactMethod TEXT,
+    serviceType TEXT NOT NULL,
+    customService TEXT,
+    preferredDate TEXT,
+    preferredTime TEXT,
+    urgency TEXT,
+    description TEXT NOT NULL,
+    agreeUpdates INTEGER NOT NULL DEFAULT 0,
+    createdAt TEXT NOT NULL
+  )
+`);
+
 function requireAdmin(req, res, next) {
   if (req.session && req.session.isAdmin) {
     return next();
   }
-
   if (req.originalUrl.startsWith('/api/')) {
     return res.status(401).json({ error: 'Not authorized' });
   }
-
   return res.redirect('/login.html');
 }
 
@@ -56,38 +75,6 @@ app.get('/admin.html', requireAdmin, (req, res) => {
 
 app.use(express.static(rootDir));
 
-const db = new sqlite3.Database(dbFile, (err) => {
-  if (err) {
-    console.error('Could not open database', err);
-    process.exit(1);
-  }
-});
-
-const createTableSql = `
-CREATE TABLE IF NOT EXISTS bookings (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  fullName TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  email TEXT,
-  contactMethod TEXT,
-  serviceType TEXT NOT NULL,
-  customService TEXT,
-  preferredDate TEXT,
-  preferredTime TEXT,
-  urgency TEXT,
-  description TEXT NOT NULL,
-  agreeUpdates INTEGER NOT NULL DEFAULT 0,
-  createdAt TEXT NOT NULL
-);
-`;
-
-db.run(createTableSql, (err) => {
-  if (err) {
-    console.error('Could not create bookings table', err);
-    process.exit(1);
-  }
-});
-
 app.post('/api/bookings', (req, res) => {
   const {
     fullName,
@@ -109,17 +96,17 @@ app.post('/api/bookings', (req, res) => {
 
   const createdAt = new Date().toISOString();
   const agreeUpdatesValue = agreeUpdates ? 1 : 0;
-  const insertSql = `
-    INSERT INTO bookings (
-      fullName, phone, email, contactMethod, serviceType,
-      customService, preferredDate, preferredTime, urgency,
-      description, agreeUpdates, createdAt
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `;
 
-  db.run(
-    insertSql,
-    [
+  try {
+    const insert = db.prepare(`
+      INSERT INTO bookings (
+        fullName, phone, email, contactMethod, serviceType,
+        customService, preferredDate, preferredTime, urgency,
+        description, agreeUpdates, createdAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = insert.run(
       fullName,
       phone,
       email || '',
@@ -132,40 +119,34 @@ app.post('/api/bookings', (req, res) => {
       description,
       agreeUpdatesValue,
       createdAt
-    ],
-    function (err) {
-      if (err) {
-        console.error('Booking insert error', err);
-        return res.status(500).json({ error: 'Could not save booking.' });
-      }
-      res.json({ success: true, bookingId: this.lastID });
-    }
-  );
+    );
+
+    res.json({ success: true, bookingId: result.lastInsertRowid });
+  } catch (err) {
+    console.error('Booking insert error', err);
+    res.status(500).json({ error: 'Could not save booking.' });
+  }
 });
 
 app.get('/api/bookings', requireAdmin, (req, res) => {
-  const selectSql = 'SELECT * FROM bookings ORDER BY createdAt DESC';
-  db.all(selectSql, [], (err, rows) => {
-    if (err) {
-      console.error('Could not read bookings', err);
-      return res.status(500).json({ error: 'Could not load bookings.' });
-    }
+  try {
+    const rows = db.prepare('SELECT * FROM bookings ORDER BY createdAt DESC').all();
     res.json(rows);
-  });
+  } catch (err) {
+    console.error('Could not read bookings', err);
+    res.status(500).json({ error: 'Could not load bookings.' });
+  }
 });
 
 app.get('/api/bookings/:id', requireAdmin, (req, res) => {
-  const selectSql = 'SELECT * FROM bookings WHERE id = ?';
-  db.get(selectSql, [req.params.id], (err, row) => {
-    if (err) {
-      console.error('Could not read booking', err);
-      return res.status(500).json({ error: 'Could not load booking.' });
-    }
-    if (!row) {
-      return res.status(404).json({ error: 'Booking not found.' });
-    }
+  try {
+    const row = db.prepare('SELECT * FROM bookings WHERE id = ?').get(req.params.id);
+    if (!row) return res.status(404).json({ error: 'Booking not found.' });
     res.json(row);
-  });
+  } catch (err) {
+    console.error('Could not read booking', err);
+    res.status(500).json({ error: 'Could not load booking.' });
+  }
 });
 
 app.use((req, res) => {
