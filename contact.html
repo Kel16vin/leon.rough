@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Contact & Booking | Elite Maintenance Services Ltd.</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        .reveal { opacity: 1; transform: translateY(0px); }
+        .reveal { opacity: 0; transform: translateY(30px); }
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
@@ -40,7 +42,7 @@
                 <a href="index.html" class="text-white hover:text-blue-400 transition">Home</a>
                 <a href="services.html" class="text-white hover:text-blue-400 transition">Services</a>
                 <a href="about.html" class="text-white hover:text-blue-400 transition">About</a>
-                <a href="contact.html" class="text-white font-bold border-b-2 border-blue-600">Contact</a>
+                <a href="contact.html" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
             </div>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
@@ -52,7 +54,7 @@
             <a href="index.html" class="block text-white hover:text-blue-400 transition">Home</a>
             <a href="services.html" class="block text-white hover:text-blue-400 transition">Services</a>
             <a href="about.html" class="block text-white hover:text-blue-400 transition">About</a>
-            <a href="contact.html" class="block text-white font-bold border-b-2 border-blue-600">Contact</a>
+            <a href="contact.html" class="block text-white bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
         </div>
     </nav>
 
@@ -224,6 +226,8 @@
     </footer>
 
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -232,6 +236,22 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+
+        // Reveal animations on scroll
+        gsap.utils.toArray(".reveal").forEach((elem) => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+                delay: elem.dataset.gsapDelay || 0
+            });
+        });
 
         // Booking form handler
         const bookingForm = document.getElementById('bookingForm');
