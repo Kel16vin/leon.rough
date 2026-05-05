@@ -225,6 +225,23 @@
         </div>
     </footer>
 
+    <!-- SUCCESS POP-UP MODAL -->
+    <div id="responseModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center z-50">
+        <div id="responseContent" class="bg-gradient-to-b from-slate-900 to-slate-950 border rounded-3xl p-8 md:p-12 text-center max-w-md shadow-2xl transform scale-95 opacity-0">
+            <div class="mb-6">
+                <div id="responseIcon" class="inline-block bg-green-500/20 rounded-full p-6 mb-4">
+                    <i class="fas fa-check-circle text-4xl text-green-400"></i>
+                </div>
+            </div>
+            <h2 id="responseTitle" class="text-2xl md:text-3xl font-bold text-white mb-2 text-glow">Success!</h2>
+            <p id="responseMessage" class="text-slate-300 mb-2">Your booking has been submitted successfully.</p>
+            <p id="responseSubMessage" class="text-slate-400 text-sm mb-6">We will contact you shortly to confirm your appointment.</p>
+            <button id="closeResponseModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-xl transition transform hover:-translate-y-1">
+                Close
+            </button>
+        </div>
+    </div>
+
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
@@ -252,6 +269,74 @@
                 delay: elem.dataset.gsapDelay || 0
             });
         });
+
+        // Response Modal Handler
+        const responseModal = document.getElementById('responseModal');
+        const responseContent = document.getElementById('responseContent');
+        const closeResponseModal = document.getElementById('closeResponseModal');
+        const responseIcon = document.getElementById('responseIcon');
+        const responseTitle = document.getElementById('responseTitle');
+        const responseMessage = document.getElementById('responseMessage');
+        const responseSubMessage = document.getElementById('responseSubMessage');
+
+        function showResponseModal(isSuccess) {
+            if (responseModal) {
+                // Update modal content based on success/failure
+                if (isSuccess) {
+                    responseIcon.innerHTML = '<i class="fas fa-check-circle text-4xl text-green-400"></i>';
+                    responseIcon.classList.remove('bg-red-500/20');
+                    responseIcon.classList.add('bg-green-500/20');
+                    responseTitle.textContent = 'Success!';
+                    responseTitle.classList.remove('text-red-400');
+                    responseTitle.classList.add('text-white');
+                    responseMessage.textContent = 'Your booking has been submitted successfully.';
+                    responseSubMessage.textContent = 'We will contact you shortly to confirm your appointment.';
+                } else {
+                    responseIcon.innerHTML = '<i class="fas fa-times-circle text-4xl text-red-400"></i>';
+                    responseIcon.classList.remove('bg-green-500/20');
+                    responseIcon.classList.add('bg-red-500/20');
+                    responseTitle.textContent = 'Error!';
+                    responseTitle.classList.remove('text-white');
+                    responseTitle.classList.add('text-red-400');
+                    responseMessage.textContent = 'Failed to submit your booking.';
+                    responseSubMessage.textContent = 'Please try again or contact us directly.';
+                }
+
+                responseModal.classList.remove('hidden');
+                gsap.to(responseContent, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: 'back.out'
+                });
+            }
+        }
+
+        function hideResponseModal() {
+            if (responseModal && responseContent) {
+                gsap.to(responseContent, {
+                    scale: 0.95,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'back.in',
+                    onComplete: () => {
+                        responseModal.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        if (closeResponseModal) {
+            closeResponseModal.addEventListener('click', hideResponseModal);
+        }
+
+        if (responseModal) {
+            responseModal.addEventListener('click', (e) => {
+                if (e.target === responseModal) {
+                    hideResponseModal();
+                }
+            });
+        }
 
         // Booking form handler
         const bookingForm = document.getElementById('bookingForm');
@@ -320,12 +405,12 @@
 
                     bookingForm.reset();
                     updateCustomFieldVisibility();
-                    if (bookingResponse) bookingResponse.textContent = 'Booking submitted successfully. We will contact you soon!';
+                    if (bookingResponse) bookingResponse.textContent = '';
+                    showResponseModal(true);
                 } catch (error) {
-                    console.warn('Backend submission failed:', error.message);
-                    bookingForm.reset();
-                    updateCustomFieldVisibility();
-                    if (bookingResponse) bookingResponse.textContent = 'Booking submitted successfully. We will contact you soon!';
+                    console.warn('Booking submission failed:', error.message);
+                    if (bookingResponse) bookingResponse.textContent = '';
+                    showResponseModal(false);
                 } finally {
                     if (submitButton) submitButton.disabled = false;
                 }
