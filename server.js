@@ -128,6 +128,72 @@ app.post('/api/bookings', (req, res) => {
   }
 });
 
+app.post('/api/bookings/admin', requireAdmin, (req, res) => {
+  const {
+    fullName,
+    phone,
+    email,
+    contactMethod,
+    serviceType,
+    customService,
+    preferredDate,
+    preferredTime,
+    urgency,
+    description,
+    agreeUpdates
+  } = req.body;
+
+  if (!fullName || !phone || !serviceType || !description) {
+    return res.status(400).json({ error: 'Missing required booking fields.' });
+  }
+
+  const createdAt = new Date().toISOString();
+  const agreeUpdatesValue = agreeUpdates ? 1 : 0;
+
+  try {
+    const insert = db.prepare(`
+      INSERT INTO bookings (
+        fullName, phone, email, contactMethod, serviceType,
+        customService, preferredDate, preferredTime, urgency,
+        description, agreeUpdates, createdAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = insert.run(
+      fullName,
+      phone,
+      email || '',
+      contactMethod || '',
+      serviceType,
+      customService || '',
+      preferredDate || '',
+      preferredTime || '',
+      urgency || '',
+      description,
+      agreeUpdatesValue,
+      createdAt
+    );
+
+    res.json({ success: true, bookingId: result.lastInsertRowid });
+  } catch (err) {
+    console.error('Booking admin insert error', err);
+    res.status(500).json({ error: 'Could not save booking.' });
+  }
+});
+
+app.delete('/api/bookings/:id', requireAdmin, (req, res) => {
+  try {
+    const result = db.prepare('DELETE FROM bookings WHERE id = ?').run(req.params.id);
+    if (result.changes === 0) {
+      return res.status(404).json({ error: 'Booking not found.' });
+    }
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Could not delete booking', err);
+    res.status(500).json({ error: 'Could not delete booking.' });
+  }
+});
+
 app.get('/api/bookings', requireAdmin, (req, res) => {
   try {
     const rows = db.prepare('SELECT * FROM bookings ORDER BY createdAt DESC').all();

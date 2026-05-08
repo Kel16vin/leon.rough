@@ -30,6 +30,29 @@
 
         <div id="statusMessage" class="text-slate-300 mb-6"></div>
 
+        <div class="mb-8 rounded-3xl border border-white/5 bg-slate-900 p-6">
+          <h2 class="text-xl font-semibold text-white mb-4">Add Submission Manually</h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            <input id="inputFullName" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Full name" />
+            <input id="inputPhone" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Phone" />
+            <input id="inputEmail" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="email" placeholder="Email" />
+            <input id="inputContactMethod" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Preferred contact method" />
+            <input id="inputServiceType" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Service type" />
+            <input id="inputCustomService" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Custom service (optional)" />
+            <input id="inputPreferredDate" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="date" placeholder="Preferred date" />
+            <input id="inputPreferredTime" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="time" placeholder="Preferred time" />
+            <input id="inputUrgency" class="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" type="text" placeholder="Urgency" />
+            <textarea id="inputDescription" class="col-span-full rounded-3xl border border-white/10 bg-slate-950 px-4 py-3 text-slate-200" rows="3" placeholder="Description"></textarea>
+            <div class="col-span-full flex flex-wrap items-center gap-4">
+              <label class="inline-flex items-center gap-2 text-slate-300">
+                <input id="inputAgreeUpdates" type="checkbox" class="h-4 w-4 rounded border-slate-700 bg-slate-950 text-blue-600" />
+                Receive updates
+              </label>
+              <button id="addBookingButton" class="ml-auto rounded-xl bg-green-600 px-5 py-3 text-white hover:bg-green-700 transition">Add submission</button>
+            </div>
+          </div>
+        </div>
+
         <div class="overflow-x-auto">
           <table class="min-w-full text-left border-collapse bg-slate-950 rounded-3xl overflow-hidden">
             <thead class="bg-slate-900 text-slate-300 uppercase text-xs tracking-wider">
@@ -41,6 +64,7 @@
                 <th class="px-4 py-3">Preferred Date</th>
                 <th class="px-4 py-3">Urgency</th>
                 <th class="px-4 py-3">Submitted</th>
+                <th class="px-4 py-3">Actions</th>
               </tr>
             </thead>
             <tbody id="bookingRows" class="bg-slate-950 text-slate-200"></tbody>
@@ -76,6 +100,9 @@
           <td class="px-4 py-4">${booking.preferredDate || 'N/A'}</td>
           <td class="px-4 py-4">${booking.urgency || 'N/A'}</td>
           <td class="px-4 py-4">${formatDate(booking.createdAt)}</td>
+          <td class="px-4 py-4">
+            <button onclick="deleteBooking(${booking.id})" class="rounded-xl bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition">Delete</button>
+          </td>
         </tr>
       `).join('');
     }
@@ -92,6 +119,78 @@
         statusMessage.textContent = 'Unable to load bookings. Check the backend server.';
         bookingRows.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-red-400">Error loading bookings.</td></tr>';
       }
+    }
+
+    document.getElementById('addBookingButton').addEventListener('click', async () => {
+      const booking = {
+        fullName: document.getElementById('inputFullName').value.trim(),
+        phone: document.getElementById('inputPhone').value.trim(),
+        email: document.getElementById('inputEmail').value.trim(),
+        contactMethod: document.getElementById('inputContactMethod').value.trim(),
+        serviceType: document.getElementById('inputServiceType').value.trim(),
+        customService: document.getElementById('inputCustomService').value.trim(),
+        preferredDate: document.getElementById('inputPreferredDate').value,
+        preferredTime: document.getElementById('inputPreferredTime').value,
+        urgency: document.getElementById('inputUrgency').value.trim(),
+        description: document.getElementById('inputDescription').value.trim(),
+        agreeUpdates: document.getElementById('inputAgreeUpdates').checked
+      };
+
+      if (!booking.fullName || !booking.phone || !booking.serviceType || !booking.description) {
+        statusMessage.textContent = 'Full name, phone, service type, and description are required.';
+        return;
+      }
+
+      statusMessage.textContent = 'Adding submission...';
+
+      try {
+        const response = await fetch('/api/bookings/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(booking)
+        });
+
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw new Error(body.error || 'Unable to add submission');
+        }
+
+        statusMessage.textContent = 'Submission added successfully.';
+        clearForm();
+        loadBookings();
+      } catch (error) {
+        statusMessage.textContent = error.message || 'Unable to add submission.';
+      }
+    });
+
+    async function deleteBooking(id) {
+      if (!confirm('Delete submission #' + id + '?')) return;
+      statusMessage.textContent = 'Deleting submission...';
+      try {
+        const response = await fetch('/api/bookings/' + id, { method: 'DELETE' });
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw new Error(body.error || 'Unable to delete submission');
+        }
+        statusMessage.textContent = 'Submission deleted.';
+        loadBookings();
+      } catch (error) {
+        statusMessage.textContent = error.message || 'Unable to delete submission.';
+      }
+    }
+
+    function clearForm() {
+      document.getElementById('inputFullName').value = '';
+      document.getElementById('inputPhone').value = '';
+      document.getElementById('inputEmail').value = '';
+      document.getElementById('inputContactMethod').value = '';
+      document.getElementById('inputServiceType').value = '';
+      document.getElementById('inputCustomService').value = '';
+      document.getElementById('inputPreferredDate').value = '';
+      document.getElementById('inputPreferredTime').value = '';
+      document.getElementById('inputUrgency').value = '';
+      document.getElementById('inputDescription').value = '';
+      document.getElementById('inputAgreeUpdates').checked = false;
     }
 
     refreshButton.addEventListener('click', loadBookings);
