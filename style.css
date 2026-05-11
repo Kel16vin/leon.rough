@@ -89,3 +89,39 @@
         height: 500px;
     }
 }
+
+/* Login page split background */
+.login-layout {
+    background: linear-gradient(90deg, #ffffff 42%, #1d5db4 42%);
+}
+
+.login-left {
+    background: #ffffff;
+}
+
+.login-right {
+    background: linear-gradient(180deg, #1d5db4 0%, #154084 100%);
+}
+
+.login-card {
+    min-width: 380px;
+    max-width: 480px;
+    transform: translateX(-2rem);
+}
+
+@media (max-width: 1023px) {
+    .login-layout {
+        display: block;
+        background: #ffffff;
+    }
+
+    .login-right {
+        display: none;
+    }
+
+    .login-card {
+        transform: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
