@@ -92,7 +92,7 @@
 
 /* Login page split background */
 .login-layout {
-    background: linear-gradient(90deg, #ffffff 42%, #1d5db4 42%);
+    background: linear-gradient(90deg, #ffffff 42%, #0f172a 42%);
 }
 
 .login-left {
@@ -100,7 +100,7 @@
 }
 
 .login-right {
-    background: linear-gradient(180deg, #1d5db4 0%, #154084 100%);
+    background: #0f172a;
     align-items: center;
     justify-content: center;
 }
