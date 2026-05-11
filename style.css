@@ -101,6 +101,17 @@
 
 .login-right {
     background: linear-gradient(180deg, #1d5db4 0%, #154084 100%);
+    align-items: center;
+    justify-content: center;
+}
+
+.login-right-content {
+    max-width: 360px;
+}
+
+.login-side-logo {
+    width: 140px;
+    height: auto;
 }
 
 .login-card {
