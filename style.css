@@ -104,9 +104,9 @@
 }
 
 .login-card {
-    min-width: 380px;
-    max-width: 480px;
-    transform: translateX(-2rem);
+    min-width: 360px;
+    max-width: 460px;
+    transform: none;
 }
 
 @media (max-width: 1023px) {
