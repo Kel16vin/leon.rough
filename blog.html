@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon-removebg-preview.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            500: '#475569', // Pale blue-grey from logo
+                            600: '#334155', // Deeper blue-grey from logo
+                            700: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Blog | Elite Maintenance Services Ltd</title>
+</head>
+
+<body class="bg-blue-700 text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass z-50 border-b border-blue-600/30 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition">
+                Elite
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="hover:text-blue-300 transition duration-300">Home</a>
+                <a href="services.html" class="hover:text-blue-300 transition duration-300">Services</a>
+                <a href="about.html" class="hover:text-blue-300 transition duration-300">About</a>
+                <a href="blog.html" class="text-blue-300 font-semibold">Blog</a>
+                <a href="contact.html" class="hover:text-blue-300 transition duration-300">Contact</a>
+                <a href="login.html" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition">Admin</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 glass z-40 md:hidden border-b border-blue-600/30">
+        <div class="flex flex-col space-y-4 p-4">
+            <a href="index.html" class="hover:text-blue-300 transition">Home</a>
+            <a href="services.html" class="hover:text-blue-300 transition">Services</a>
+            <a href="about.html" class="hover:text-blue-300 transition">About</a>
+            <a href="blog.html" class="text-blue-300 font-semibold">Blog</a>
+            <a href="contact.html" class="hover:text-blue-300 transition">Contact</a>
+            <a href="login.html" class="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition inline-block">Admin</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 relative glow-section">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-glow">
+                <i class="fas fa-pen-fancy text-blue-400 mr-4"></i>Our Blog
+            </h1>
+            <p class="text-xl text-blue-200 mb-8">
+                Insights, tips, and industry updates from our maintenance experts
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="py-16 px-4 bg-pattern">
+        <div class="max-w-5xl mx-auto">
+            <!-- Blog Grid -->
+            <div id="blog-posts" class="grid md:grid-cols-2 gap-8">
+                <!-- Blog posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900/50 border-t border-blue-600/30 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold text-blue-300 mb-4">Elite Maintenance</h3>
+                    <p class="text-blue-200 text-sm">Professional maintenance services for residential and commercial properties.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-blue-300 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-blue-200 text-sm">
+                        <li><a href="index.html" class="hover:text-blue-300 transition">Home</a></li>
+                        <li><a href="services.html" class="hover:text-blue-300 transition">Services</a></li>
+                        <li><a href="about.html" class="hover:text-blue-300 transition">About</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-blue-300 mb-4">Contact</h3>
+                    <p class="text-blue-200 text-sm mb-2"><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+                    <p class="text-blue-200 text-sm"><i class="fas fa-envelope mr-2"></i> info@elite.com</p>
+                </div>
+            </div>
+            <div class="border-t border-blue-600/30 pt-8 text-center text-blue-300 text-sm">
+                <p>&copy; 2026 Elite Maintenance Services Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Load blog posts
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('/api/blog');
+                const posts = await response.json();
+                const container = document.getElementById('blog-posts');
+                
+                if (posts.length === 0) {
+                    container.innerHTML = '<div class="col-span-2 text-center py-16"><p class="text-blue-200">No blog posts yet. Check back soon!</p></div>';
+                    return;
+                }
+
+                container.innerHTML = posts.map(post => `
+                    <article class="part-card rounded-lg p-8 hover:border-blue-400/30 cursor-pointer group" onclick="window.location.href='/blog-post.html?id=${post.id}'">
+                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition duration-300">` : ''}
+                        <div class="flex items-center gap-2 text-blue-300 text-sm mb-3">
+                            <i class="fas fa-calendar"></i>
+                            <span>${new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-3 group-hover:text-blue-300 transition">${post.title}</h2>
+                        <p class="text-blue-200 mb-4 line-clamp-2">${post.excerpt}</p>
+                        <div class="flex items-center text-blue-400 group-hover:gap-2 transition gap-0">
+                            <span>Read More</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
+                        </div>
+                    </article>
+                `).join('');
+
+                // Animate posts with GSAP
+                gsap.registerPlugin(ScrollTrigger);
+                document.querySelectorAll('.part-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    gsap.to(card, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: index * 0.1,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blog-posts').innerHTML = '<div class="col-span-2 text-center py-16"><p class="text-red-300">Error loading blog posts</p></div>';
+            }
+        }
+
+        // Animate hero on load
+        gsap.to('.reveal', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.2
+        });
+
+        // Load posts when page loads
+        loadBlogPosts();
+    </script>
+</body>
+
+</html>

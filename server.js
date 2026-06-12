@@ -41,6 +41,18 @@ db.exec(`
     description TEXT NOT NULL,
     agreeUpdates INTEGER NOT NULL DEFAULT 0,
     createdAt TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS blog_posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    excerpt TEXT NOT NULL,
+    content TEXT NOT NULL,
+    author TEXT,
+    category TEXT,
+    image TEXT,
+    createdAt TEXT NOT NULL,
+    updatedAt TEXT NOT NULL
   )
 `);
 
@@ -212,6 +224,113 @@ app.get('/api/bookings/:id', requireAdmin, (req, res) => {
   } catch (err) {
     console.error('Could not read booking', err);
     res.status(500).json({ error: 'Could not load booking.' });
+  }
+});
+
+// Blog API Endpoints
+app.get('/api/blog', (req, res) => {
+  try {
+    const rows = db.prepare('SELECT * FROM blog_posts ORDER BY createdAt DESC').all();
+    res.json(rows);
+  } catch (err) {
+    console.error('Could not read blog posts', err);
+    res.status(500).json({ error: 'Could not load blog posts.' });
+  }
+});
+
+app.get('/api/blog/:id', (req, res) => {
+  try {
+    const row = db.prepare('SELECT * FROM blog_posts WHERE id = ?').get(req.params.id);
+    if (!row) return res.status(404).json({ error: 'Blog post not found.' });
+    res.json(row);
+  } catch (err) {
+    console.error('Could not read blog post', err);
+    res.status(500).json({ error: 'Could not load blog post.' });
+  }
+});
+
+app.post('/api/blog', requireAdmin, (req, res) => {
+  const { title, excerpt, content, author, category, image } = req.body;
+
+  if (!title || !excerpt || !content) {
+    return res.status(400).json({ error: 'Missing required blog fields.' });
+  }
+
+  const createdAt = new Date().toISOString();
+  const updatedAt = createdAt;
+
+  try {
+    const insert = db.prepare(`
+      INSERT INTO blog_posts (title, excerpt, content, author, category, image, createdAt, updatedAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = insert.run(
+      title,
+      excerpt,
+      content,
+      author || 'Admin',
+      category || 'General',
+      image || '',
+      createdAt,
+      updatedAt
+    );
+
+    res.json({ success: true, postId: result.lastInsertRowid });
+  } catch (err) {
+    console.error('Blog post insert error', err);
+    res.status(500).json({ error: 'Could not save blog post.' });
+  }
+});
+
+app.put('/api/blog/:id', requireAdmin, (req, res) => {
+  const { title, excerpt, content, author, category, image } = req.body;
+
+  if (!title || !excerpt || !content) {
+    return res.status(400).json({ error: 'Missing required blog fields.' });
+  }
+
+  const updatedAt = new Date().toISOString();
+
+  try {
+    const update = db.prepare(`
+      UPDATE blog_posts 
+      SET title = ?, excerpt = ?, content = ?, author = ?, category = ?, image = ?, updatedAt = ?
+      WHERE id = ?
+    `);
+
+    const result = update.run(
+      title,
+      excerpt,
+      content,
+      author || 'Admin',
+      category || 'General',
+      image || '',
+      updatedAt,
+      req.params.id
+    );
+
+    if (result.changes === 0) {
+      return res.status(404).json({ error: 'Blog post not found.' });
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Blog post update error', err);
+    res.status(500).json({ error: 'Could not update blog post.' });
+  }
+});
+
+app.delete('/api/blog/:id', requireAdmin, (req, res) => {
+  try {
+    const result = db.prepare('DELETE FROM blog_posts WHERE id = ?').run(req.params.id);
+    if (result.changes === 0) {
+      return res.status(404).json({ error: 'Blog post not found.' });
+    }
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Could not delete blog post', err);
+    res.status(500).json({ error: 'Could not delete blog post.' });
   }
 });
 
