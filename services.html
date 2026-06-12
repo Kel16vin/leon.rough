@@ -44,9 +44,9 @@
         }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-white text-slate-900 overflow-x-hidden">
 
-    <div id="loader" class="fixed inset-0 z-[100] bg-black flex items-center justify-center">
+    <div id="loader" class="fixed inset-0 z-[100] bg-white flex items-center justify-center">
         <div class="text-center">
             <svg width="120px" height="120px" viewBox="0 0 512 512" class="mb-4 mx-auto" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(0,-540.36218)">
@@ -54,7 +54,7 @@
                     <path class="animate-gear" d="m 324.36112,772.72816 c -1.52034,6.05868 -9.34893,4.51312 -13.6875,7.3125 -7.20156,2.66035 -14.11474,6.08359 -20.75,10.03125 -6.67089,-6.78695 -13.43823,-13.4785 -20.15625,-20.21875 -13.4375,13.4375 -26.875,26.875 -40.3125,40.3125 6.74045,6.71782 13.43144,13.48574 20.21875,20.15625 -6.43334,10.69935 -11.26458,22.39419 -14.3125,34.4375 -9.5,0 -19,0 -28.5,0 0,19 0,38 0,57 9.5,0 19,0 28.5,0 3.10194,12.10119 7.78172,23.73324 14.28125,34.40622 -6.72917,6.7292 -13.45833,13.4584 -20.1875,20.1875 13.4375,13.448 26.875,26.89587 40.3125,40.34377 6.71288,-6.735 13.46985,-13.4265 20.15625,-20.18747 10.72676,6.40527 22.38474,11.20747 34.4375,14.24997 0,9.5 0,19 0,28.5 19,0 38,0 57,0 0,-9.5 0,-19 0,-28.5 12.05317,-3.0363 23.70999,-7.8476 34.4375,-14.24997 6.68729,6.76017 13.44273,13.45317 20.15625,20.18747 13.44792,-13.4479 26.89583,-26.89577 40.34375,-40.34377 -6.72917,-6.7291 -13.45833,-13.4583 -20.1875,-20.1875 6.42548,-10.721 11.18392,-22.28825 14.25,-34.40622 9.5,0 19,0 28.5,0 0,-19 0,-38 0,-57 -9.5,0 -19,0 -28.5,0 -3.06086,-12.10093 -7.84771,-23.69556 -14.25,-34.4375 6.76017,-6.68729 13.45318,-13.44273 20.15625,-20.15625 -13.44792,-13.4375 -26.89583,-26.875 -40.34375,-40.3125 -6.71782,6.74045 -13.48574,13.43144 -20.15625,20.21875 -10.72481,-6.44029 -22.37339,-11.28343 -34.4375,-14.25 0,-9.52083 0,-19.04167 0,-28.5625 -19,0 -38,0 -57,0 0,8.48958 0,16.97917 0,25.46875 z m 28.5,54.03125 c 33.66352,-0.78462 64.50545,27.78415 66.40304,61.43339 2.80921,31.58671 -19.84643,62.93673 -50.71554,69.81663 -29.25703,7.3089 -62.19699,-7.7596 -75.1875,-34.84377 -14.12822,-27.40316 -6.08222,-64.30216 18.875,-82.5625 11.56346,-8.86893 25.98129,-13.91577 40.625,-13.84375 z" fill="#334155" />
                 </g>
             </svg>
-            <h2 class="text-white font-bold tracking-widest uppercase italic">Elite Maintenance Loading...</h2>
+            <h2 class="text-slate-900 font-bold tracking-widest uppercase italic">Elite Maintenance Loading...</h2>
         </div>
     </div>
 
@@ -66,79 +66,79 @@
             </a>
             <!-- Desktop Nav -->
             <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="text-white hover:text-blue-400 transition">Home</a>
-                <a href="services.html" class="text-white font-bold border-b-2 border-blue-600">Services</a>
-                <a href="about.html" class="text-white hover:text-blue-400 transition">About</a>
-                <a href="blog.html" class="text-white hover:text-blue-400 transition">Blog</a>
+                <a href="index.html" class="text-slate-900 hover:text-blue-600 transition">Home</a>
+                <a href="services.html" class="text-slate-900 font-bold border-b-2 border-blue-600">Services</a>
+                <a href="about.html" class="text-slate-900 hover:text-blue-600 transition">About</a>
+                <a href="blog.html" class="text-slate-900 hover:text-blue-600 transition">Blog</a>
                 <a href="contact.html" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
             </div>
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+            <button id="mobile-menu-btn" class="md:hidden text-slate-900 text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-black/90 backdrop-blur-md rounded-2xl mt-2 p-4 space-y-4">
-            <a href="index.html" class="block text-white hover:text-blue-400 transition">Home</a>
-            <a href="services.html" class="block text-white font-bold border-b-2 border-blue-600">Services</a>
-            <a href="about.html" class="block text-white hover:text-blue-400 transition">About</a>
-            <a href="blog.html" class="block text-white hover:text-blue-400 transition">Blog</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white/90 backdrop-blur-md rounded-2xl mt-2 p-4 space-y-4 border border-slate-200">
+            <a href="index.html" class="block text-slate-900 hover:text-blue-600 transition">Home</a>
+            <a href="services.html" class="block text-slate-900 font-bold border-b-2 border-blue-600">Services</a>
+            <a href="about.html" class="block text-slate-900 hover:text-blue-600 transition">About</a>
+            <a href="blog.html" class="block text-slate-900 hover:text-blue-600 transition">Blog</a>
             <a href="contact.html" class="block text-white bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
         </div>
     </nav>
 
     <header id="hero" class="relative h-[50vh] flex items-center justify-center overflow-hidden pt-32">
         <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover" alt="Services Hero">
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/75 to-white/95"></div>
         <div class="relative z-10 text-center px-4">
-            <h1 id="hero-title" class="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter text-glow">Our <span class="text-blue-500">Services</span></h1>
+            <h1 id="hero-title" class="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">Our <span class="text-blue-500">Services</span></h1>
         </div>
     </header>
 
     <!-- AUTOMOTIVE SERVICES -->
-    <section id="automotive" class="py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 glow-section bg-pattern">
+    <section id="automotive" class="py-24 bg-gradient-to-b from-white via-slate-100 to-slate-100 glow-section bg-pattern">
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-12 mb-16">
                 <div class="md:w-1/2 reveal">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl h-96 w-full object-cover border border-white/5" alt="Automotive Main">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl h-96 w-full object-cover border border-slate-200" alt="Automotive Main">
                 </div>
                 <div class="md:w-1/2 reveal">
                     <div class="flex items-center gap-4 mb-6">
-                        <i class="fas fa-car text-4xl text-blue-500 text-glow"></i>
-                        <h2 class="text-4xl font-bold uppercase italic text-glow">Automotive Maintenance</h2>
+                        <i class="fas fa-car text-4xl text-blue-500"></i>
+                        <h2 class="text-4xl font-bold uppercase italic">Automotive Maintenance</h2>
                     </div>
                     <p class="text-slate-400 text-lg">Elite Maintenance Services Ltd. provides unparalleled care for your vehicle. From individual owners to large commercial fleets, our master technicians ensure precision performance at every turn.</p>
                 </div>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300">
-                    <i class="fas fa-tools text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Car/Fleet Maintenance</h3>
+                    <i class="fas fa-tools text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Car/Fleet Maintenance</h3>
                     <p class="text-slate-400">Comprehensive maintenance plans for individual owners and commercial fleets.</p>
                 </div>
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300" data-gsap-delay="0.1">
-                    <i class="fas fa-paint-roller text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Body Works</h3>
+                    <i class="fas fa-paint-roller text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Body Works</h3>
                     <p class="text-slate-400">Professional panel beating, spray painting, and structural repairs.</p>
                 </div>
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300" data-gsap-delay="0.2">
-                    <i class="fas fa-laptop-code text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Electrical Diagnosis</h3>
+                    <i class="fas fa-laptop-code text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Electrical Diagnosis</h3>
                     <p class="text-slate-400">Advanced computerized scanning and troubleshooting of complex electrical systems.</p>
                 </div>
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300">
-                    <i class="fas fa-car-side text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Suspension</h3>
+                    <i class="fas fa-car-side text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Suspension</h3>
                     <p class="text-slate-400">Precision shock absorber replacement and suspension system tuning.</p>
                 </div>
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300" data-gsap-delay="0.1">
-                    <i class="fas fa-cogs text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Car Engine Service</h3>
+                    <i class="fas fa-cogs text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Car Engine Service</h3>
                     <p class="text-slate-400">Master engine rebuilding, timing belt changes, and performance optimization.</p>
                 </div>
                 <div class="part-card p-8 rounded-3xl border border-slate-800 reveal hover:border-blue-500 transition-all duration-300" data-gsap-delay="0.2">
-                    <i class="fas fa-box-open text-3xl text-blue-500 mb-6 text-glow"></i>
-                    <h3 class="text-xl font-bold mb-4 text-white">Supply for Spare Parts</h3>
+                    <i class="fas fa-box-open text-3xl text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900">Supply for Spare Parts</h3>
                     <p class="text-slate-400">Reliable sourcing and delivery of genuine OEM spare parts for all major brands.</p>
                 </div>
             </div>
@@ -146,24 +146,24 @@
     </section>
 
     <!-- POWER & ENERGY SOLUTIONS -->
-    <section id="power" class="py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 glow-section bg-pattern">
+    <section id="power" class="py-24 bg-gradient-to-b from-white via-slate-100 to-slate-100 glow-section bg-pattern">
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex items-center gap-4 mb-12 reveal">
-                <i class="fas fa-bolt text-4xl text-blue-500 text-glow"></i>
-                <h2 class="text-4xl font-bold uppercase italic text-glow text-white">Power & Energy</h2>
+                <i class="fas fa-bolt text-4xl text-blue-500"></i>
+                <h2 class="text-4xl font-bold uppercase italic text-slate-900">Power & Energy</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="relative group h-80 rounded-3xl overflow-hidden reveal border border-white/5 shadow-2xl">
+                <div class="relative group h-80 rounded-3xl overflow-hidden reveal border border-slate-200 shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 flex flex-col justify-end">
-                        <h3 class="text-2xl font-bold mb-2 text-white text-glow">Hybrid Solar Power Systems</h3>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-900">Hybrid Solar Power Systems</h3>
                         <p class="text-slate-300">Installation and maintenance of sustainable hybrid solar solutions for homes and industry.</p>
                     </div>
                 </div>
-                <div class="relative group h-80 rounded-3xl overflow-hidden reveal border border-white/5 shadow-2xl" data-gsap-delay="0.1">
+                <div class="relative group h-80 rounded-3xl overflow-hidden reveal border border-slate-200 shadow-2xl" data-gsap-delay="0.1">
                     <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Generators">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 flex flex-col justify-end">
-                        <h3 class="text-2xl font-bold mb-2 text-white text-glow">Generators</h3>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-900">Generators</h3>
                         <p class="text-slate-300">Servicing and installation of heavy-duty industrial and residential backup generators.</p>
                     </div>
                 </div>
@@ -172,16 +172,16 @@
     </section>
 
     <!-- WATER & IRRIGATION SERVICES -->
-    <section id="water" class="py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 glow-section bg-pattern">
+    <section id="water" class="py-24 bg-gradient-to-b from-white via-slate-100 to-slate-100 glow-section bg-pattern">
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row-reverse items-center gap-12 mb-16">
                 <div class="md:w-1/2 reveal">
-                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl h-96 w-full object-cover border border-white/5" alt="Water Main">
+                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl h-96 w-full object-cover border border-slate-200" alt="Water Main">
                 </div>
                 <div class="md:w-1/2 reveal">
                     <div class="flex items-center gap-4 mb-6">
-                        <i class="fas fa-tint text-4xl text-blue-500 text-glow"></i>
-                        <h2 class="text-4xl font-bold uppercase italic text-glow text-white">Water & Irrigation</h2>
+                        <i class="fas fa-tint text-4xl text-blue-500"></i>
+                        <h2 class="text-4xl font-bold uppercase italic text-slate-900">Water & Irrigation</h2>
                     </div>
                     <p class="text-slate-400 text-lg">Our water solutions are designed for sustainability and reliability. We handle everything from deep bore hole drilling to precision agricultural irrigation systems.</p>
                 </div>
@@ -189,30 +189,30 @@
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="part-card p-6 rounded-3xl border border-slate-800 reveal text-center">
                     <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(71,85,105,0.3)]">
-                        <i class="fas fa-faucet text-2xl text-blue-500 text-glow"></i>
+                        <i class="fas fa-faucet text-2xl text-blue-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white text-glow">Production Wells</h3>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Production Wells</h3>
                     <p class="text-slate-400 text-sm">Industrial scale water production systems.</p>
                 </div>
                 <div class="part-card p-6 rounded-3xl border border-slate-800 reveal text-center" data-gsap-delay="0.1">
                     <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(71,85,105,0.3)]">
-                        <i class="fas fa-hand-holding-water text-2xl text-blue-500 text-glow"></i>
+                        <i class="fas fa-hand-holding-water text-2xl text-blue-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white text-glow">Shallow Wells</h3>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Shallow Wells</h3>
                     <p class="text-slate-400 text-sm">Cost-effective local water access solutions.</p>
                 </div>
                 <div class="part-card p-6 rounded-3xl border border-slate-800 reveal text-center" data-gsap-delay="0.2">
                     <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(71,85,105,0.3)]">
-                        <i class="fas fa-mountain text-2xl text-blue-500 text-glow"></i>
+                        <i class="fas fa-mountain text-2xl text-blue-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white text-glow">Bore Holes</h3>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Bore Holes</h3>
                     <p class="text-slate-400 text-sm">Deep drilling for sustainable groundwater.</p>
                 </div>
                 <div class="part-card p-6 rounded-3xl border border-slate-800 reveal text-center" data-gsap-delay="0.3">
                     <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(71,85,105,0.3)]">
-                        <i class="fas fa-seedling text-2xl text-blue-500 text-glow"></i>
+                        <i class="fas fa-seedling text-2xl text-blue-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white text-glow">Irrigation</h3>
+                    <h3 class="text-xl font-bold mb-2 text-slate-900">Irrigation</h3>
                     <p class="text-slate-400 text-sm">Precision agricultural water management.</p>
                 </div>
             </div>
@@ -220,10 +220,10 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 pt-24 pb-12 glow-section border-t border-white/5 bg-pattern">
+    <footer class="bg-white pt-24 pb-12 glow-section border-t border-slate-200 bg-pattern">
         <div class="container mx-auto px-6 relative z-10 text-center">
             <img src="logo-removebg-preview.png" alt="Elite Maintenance Services Ltd. Logo" class="h-24 md:h-48 w-auto mx-auto mb-4">
-            <h1 class="text-white text-2xl font-bold mb-4 italic text-glow uppercase tracking-widest">Elite Maintenance Services Ltd.</h1>
+            <h1 class="text-slate-900 text-2xl font-bold mb-4 italic uppercase tracking-widest">Elite Maintenance Services Ltd.</h1>
             <div class="flex justify-center space-x-6 mb-8">
                 <a href="#" class="text-slate-400 hover:text-blue-500 text-2xl transition"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="text-slate-400 hover:text-blue-500 text-2xl transition"><i class="fab fa-instagram"></i></a>
