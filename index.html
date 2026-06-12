@@ -56,6 +56,43 @@
             filter: blur(3px);
         }
 
+        .hero-slide {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.18);
+            opacity: 0;
+            will-change: transform, opacity;
+            z-index: 5;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-slide-1 {
+            left: 2rem;
+            bottom: 3rem;
+            width: 18rem;
+            height: 14rem;
+        }
+
+        .hero-slide-2 {
+            right: 2rem;
+            top: 35%;
+            width: 18rem;
+            height: 16rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-slide {
+                display: none;
+            }
+        }
+
         @keyframes gear-rotate {
             from {
                 transform: rotate(0deg);
@@ -87,8 +124,8 @@
         </div>
     </div>
 
-    <nav id="main-nav" class="absolute top-0 left-0 w-full p-4 z-50">
-        <div class="container mx-auto flex justify-between items-center glass rounded-2xl px-4 md:px-8 py-2 mt-4">
+    <nav id="main-nav" class="absolute top-0 left-0 w-full p-4 z-50 glass bg-white/30 shadow-sm">
+        <div class="container mx-auto flex justify-between items-center rounded-2xl px-4 md:px-8 py-2 mt-4 glass bg-white/75">
             <a href="index.html" class="flex items-center">
                 <img src="logo-removebg-preview.png" alt="Elite Maintenance Services Ltd. Logo" class="h-16 md:h-32 w-auto">
             </a>
@@ -121,7 +158,15 @@
         <img id="hero-img"
             src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920"
             class="absolute inset-0 w-full h-full object-cover" alt="Luxury Car">
-        <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/95"></div>
+        <div class="hero-slide hero-slide-1 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=900"
+                alt="Mechanic inspecting engine">
+        </div>
+        <div class="hero-slide hero-slide-2 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=900"
+                alt="Premium vehicle service">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white/75" style="z-index: 1;"></div>
         <div class="container mx-auto relative z-10 px-4 md:px-6 pt-20 md:pt-32">
             <h2 id="hero-title" class="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-4">Elite<br><span
                     class="text-blue-500">Maintenance Services Ltd.</span></h2>
@@ -336,7 +381,29 @@
                 .from("#hero-img", { scale: 1.1, duration: 1.2, ease: "power2.out" }, "-=0.4")
                 .from("#hero-title", { x: -60, opacity: 0, duration: 0.6, ease: "power4.out" }, "-=0.8")
                 .from("#hero-text", { y: 20, opacity: 0, duration: 0.5 }, "-=0.3")
-                .from("#hero-btns", { y: 20, opacity: 0, duration: 0.4 }, "-=0.2");
+                .from("#hero-btns", { y: 20, opacity: 0, duration: 0.4 }, "-=0.2")
+                .from(".hero-slide-1", { x: -140, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8")
+                .from(".hero-slide-2", { x: 140, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.9");
+
+            gsap.to(".hero-slide-1", {
+                x: 18,
+                duration: 1.6,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                repeatDelay: 4,
+                delay: 4
+            });
+
+            gsap.to(".hero-slide-2", {
+                x: -18,
+                duration: 1.6,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true,
+                repeatDelay: 4,
+                delay: 4
+            });
         });
 
         // Scroll Animations for elements with .reveal class
