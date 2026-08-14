@@ -31,45 +31,46 @@
 <body class="bg-white text-slate-900 overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full glass z-50 border-b border-slate-200 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-slate-900 hover:text-blue-600 transition">
-                Elite
+    <nav id="main-nav" class="absolute top-0 left-0 w-full p-4 z-50">
+        <div class="container mx-auto flex justify-between items-center glass bg-white/80 backdrop-blur-md rounded-2xl px-4 md:px-8 py-2 border border-white/20 shadow-lg">
+            <a href="index.html" class="flex items-center">
+                <img src="images/logo-removebg-preview.png" alt="Elite Maintenance Services Ltd. Logo" class="h-16 md:h-32 w-auto">
             </a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="text-slate-700 hover:text-blue-600 transition duration-300">Home</a>
-                <a href="services.html" class="text-slate-700 hover:text-blue-600 transition duration-300">Services</a>
-                <a href="about.html" class="text-slate-700 hover:text-blue-600 transition duration-300">About</a>
-                <a href="blog.html" class="text-blue-600 font-semibold">Blog</a>
-                <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition duration-300">Contact</a>
-                <a href="login.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Admin</a>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-slate-900 hover:text-blue-600 transition">Home</a>
+                <a href="services.html" class="text-slate-900 hover:text-blue-600 transition">Services</a>
+                <a href="about.html" class="text-slate-900 hover:text-blue-600 transition">About</a>
+                <a href="blog.html" class="text-slate-900 font-bold border-b-2 border-blue-600">Blog</a>
+                <a href="contact.html" class="text-slate-900 hover:text-blue-600 transition">Contact</a>
+                <a href="contact.html" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-900 text-2xl focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white/90 backdrop-blur-md rounded-2xl mt-2 p-4 space-y-4 border border-slate-200">
+            <a href="index.html" class="block text-slate-900 hover:text-blue-600 transition">Home</a>
+            <a href="services.html" class="block text-slate-900 hover:text-blue-600 transition">Services</a>
+            <a href="about.html" class="block text-slate-900 hover:text-blue-600 transition">About</a>
+            <a href="blog.html" class="block text-slate-900 font-bold border-b-2 border-blue-600">Blog</a>
+            <a href="contact.html" class="block text-slate-900 hover:text-blue-600 transition">Contact</a>
+            <a href="contact.html" class="block text-white bg-blue-600 px-4 py-2 rounded-full hover:bg-blue-700 transition shadow-lg">Book Service</a>
+        </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden fixed top-16 left-0 right-0 glass z-40 md:hidden border-b border-slate-200">
-        <div class="flex flex-col space-y-4 p-4">
-            <a href="index.html" class="text-slate-700 hover:text-blue-600 transition">Home</a>
-            <a href="services.html" class="text-slate-700 hover:text-blue-600 transition">Services</a>
-            <a href="about.html" class="text-slate-700 hover:text-blue-600 transition">About</a>
-            <a href="blog.html" class="text-blue-600 font-semibold">Blog</a>
-            <a href="contact.html" class="text-slate-700 hover:text-blue-600 transition">Contact</a>
-            <a href="login.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition inline-block">Admin</a>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section class="pt-32 pb-16 px-4 relative glow-section">
-        <div class="max-w-4xl mx-auto text-center reveal">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-slate-900">
-                <i class="fas fa-pen-fancy text-blue-500 mr-4"></i>Our Blog
+    <section class="relative h-[45vh] flex items-center justify-center overflow-hidden pt-32">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover" alt="Blog Hero">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-slate-100"></div>
+        <div class="relative z-10 text-center px-4 reveal">
+            <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">
+                Our <span class="text-blue-400">Blog</span>
             </h1>
-            <p class="text-xl text-slate-600 mb-8">
-                Insights, tips, and industry updates from our maintenance experts
+            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto">
+                Industry insights on recent car productions, cutting-edge machinery, and precision maintenance
             </p>
         </div>
     </section>
@@ -79,7 +80,7 @@
         <div class="max-w-5xl mx-auto">
             <!-- Blog Grid -->
             <div id="blog-posts" class="grid md:grid-cols-2 gap-8">
-                <!-- Blog posts will be loaded here -->
+                <!-- Blog posts loaded here -->
             </div>
         </div>
     </section>
@@ -89,8 +90,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-4">Elite Maintenance</h3>
-                    <p class="text-slate-600 text-sm">Professional maintenance services for residential and commercial properties.</p>
+                    <img src="images/logo-removebg-preview.png" alt="Elite Maintenance Services Ltd. Logo" class="h-20 w-auto mb-4">
+                    <p class="text-slate-600 text-sm">The region's leading experts in high-end vehicle maintenance, genuine spare parts, and industrial machinery maintenance.</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-slate-900 mb-4">Quick Links</h3>
@@ -98,13 +99,14 @@
                         <li><a href="index.html" class="text-slate-700 hover:text-blue-600 transition">Home</a></li>
                         <li><a href="services.html" class="text-slate-700 hover:text-blue-600 transition">Services</a></li>
                         <li><a href="about.html" class="text-slate-700 hover:text-blue-600 transition">About</a></li>
+                        <li><a href="blog.html" class="text-slate-700 hover:text-blue-600 transition">Blog</a></li>
                         <li><a href="contact.html" class="text-slate-700 hover:text-blue-600 transition">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-slate-900 mb-4">Contact</h3>
-                    <p class="text-slate-600 text-sm mb-2"><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
-                    <p class="text-slate-600 text-sm"><i class="fas fa-envelope mr-2"></i> info@elite.com</p>
+                    <p class="text-slate-600 text-sm mb-2"><i class="fas fa-phone mr-2 text-blue-600"></i> +256 786705450</p>
+                    <p class="text-slate-600 text-sm"><i class="fas fa-envelope mr-2 text-blue-600"></i> <a href="mailto:elitemaintenaceltd@gmail.com" class="hover:text-blue-600 transition">elitemaintenaceltd@gmail.com</a></p>
                 </div>
             </div>
             <div class="border-t border-slate-200 pt-8 text-center text-slate-600 text-sm">
@@ -114,6 +116,49 @@
     </footer>
 
     <script>
+        const defaultBlogPosts = [
+            {
+                id: 1,
+                title: "Inside the 2026 Production Revolution: Hypercars & Next-Gen Assembly",
+                excerpt: "Discover how premier luxury automakers are combining lightweight carbon composite monocoques with 3D laser-guided assembly robotics to redefine automotive performance.",
+                content: `The automotive industry is currently experiencing one of its most transformative eras. Recent production lines for high-end luxury vehicles and hypercars have shifted toward ultra-lightweight carbon composite monocoques integrated with high-voltage multi-motor architectures.\n\nFrom automated robotic calibration to real-time torque vectoring alignment, modern assembly facilities utilize state-of-the-art optical scanners capable of detecting tolerances down to 0.001mm. This level of precision guarantees unprecedented aerodynamic efficiency and mechanical longevity.\n\nAt Elite Maintenance Services Ltd., our workshop equipment and technician training mirror these exact factory specifications, ensuring every vehicle brought to our bays receives world-class care.`,
+                author: "Elite Engineering Team",
+                category: "Car Production",
+                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=800",
+                createdAt: "2026-08-10T10:00:00.000Z"
+            },
+            {
+                id: 2,
+                title: "Cutting-Edge Machinery: 5-Axis CNC & Robotic Diagnostics",
+                excerpt: "How 5-axis CNC milling machines, automated robotic diagnostic bays, and digital twin analytics elevate high-end vehicle maintenance and custom component fabrication.",
+                content: `Modern automotive repair requires far more than traditional hand tools. The integration of 5-axis CNC machining allows custom fabrication of rare and obsolete spare parts directly from 3D CAD models within hours.\n\nSimultaneously, robotic diagnostic bays conduct non-destructive ultrasound scans on suspension components, chassis welds, and engine blocks. These advanced machines build a complete "digital twin" of your vehicle to identify micro-fractures and thermal stress before they lead to catastrophic failure.\n\nOur workshop investment in cutting-edge diagnostic and fabrication machinery ensures your vehicle remains reliable under demanding driving conditions.`,
+                author: "Workshop Master Technician",
+                category: "Cutting-Edge Machinery",
+                image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+                createdAt: "2026-08-12T14:30:00.000Z"
+            },
+            {
+                id: 3,
+                title: "Next-Gen Turbocharging & Hybrid Powertrains in Modern Vehicles",
+                excerpt: "An in-depth look at 48V electric turbochargers, dual-clutch transmission telemetry, and high-efficiency hybrid power units in today's flagship vehicles.",
+                content: `Electric turbocharging technology derived from Formula 1 racing is now making its way into modern production cars. By utilizing 48V electric motors to spool the turbine before exhaust gases build up, turbo lag is completely eliminated while boost efficiency increases by over 30%.\n\nMaintaining these complex powertrains requires specialized electronic calibration tools and fluid management systems. Understanding heat exchanger loops and battery thermal management is key to maintaining peak engine output.`,
+                author: "Automotive Research Dept.",
+                category: "Car Production",
+                image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=800",
+                createdAt: "2026-08-14T09:15:00.000Z"
+            },
+            {
+                id: 4,
+                title: "Heavy Industrial Machinery & Submersible Pump Telemetry",
+                excerpt: "Exploring how automated telemetry and heavy-duty diagnostic rigs maintain high-output borehole pumps and standby industrial power generators.",
+                content: `Beyond high-performance automotive vehicles, industrial power and water infrastructure rely heavily on specialized heavy machinery. Advanced telemetry sensors now monitor vibration, motor winding temperatures, and flow rates in real-time for submersible borehole systems and heavy standby diesel generators.\n\nOur engineering team specializes in preventive maintenance routines for these critical power and water installations, preventing downtime and extending equipment lifespan.`,
+                author: "Power & Energy Division",
+                category: "Industrial Machinery",
+                image: "images/borehole.png",
+                createdAt: "2026-08-14T11:45:00.000Z"
+            }
+        ];
+
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
@@ -122,33 +167,44 @@
 
         // Load blog posts
         async function loadBlogPosts() {
+            let posts = [];
             try {
                 const response = await fetch('/api/blog');
-                const posts = await response.json();
-                const container = document.getElementById('blog-posts');
-                
-                if (posts.length === 0) {
-                    container.innerHTML = '<div class="col-span-2 text-center py-16"><p class="text-blue-200">No blog posts yet. Check back soon!</p></div>';
-                    return;
+                if (response.ok) {
+                    posts = await response.json();
                 }
+            } catch (error) {
+                console.warn('API unavailable, loading default blog posts:', error);
+            }
 
-                container.innerHTML = posts.map(post => `
-                    <article class="part-card rounded-lg p-8 hover:border-blue-400/30 cursor-pointer group" onclick="window.location.href='/blog-post.html?id=${post.id}'">
-                        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition duration-300">` : ''}
-                        <div class="flex items-center gap-2 text-blue-300 text-sm mb-3">
-                            <i class="fas fa-calendar"></i>
-                            <span>${new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                        </div>
-                        <h2 class="text-2xl font-bold mb-3 group-hover:text-blue-300 transition">${post.title}</h2>
-                        <p class="text-blue-200 mb-4 line-clamp-2">${post.excerpt}</p>
-                        <div class="flex items-center text-blue-400 group-hover:gap-2 transition gap-0">
-                            <span>Read More</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition"></i>
-                        </div>
-                    </article>
-                `).join('');
+            if (!posts || posts.length === 0) {
+                posts = defaultBlogPosts;
+            }
 
-                // Animate posts with GSAP
+            const container = document.getElementById('blog-posts');
+            container.innerHTML = posts.map(post => `
+                <article class="part-card rounded-2xl p-6 bg-white border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 cursor-pointer group flex flex-col justify-between" onclick="window.location.href='blog-post.html?id=${post.id}'">
+                    <div>
+                        ${post.image ? `<div class="h-48 overflow-hidden rounded-xl mb-4"><img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></div>` : ''}
+                        <div class="flex items-center justify-between text-slate-500 text-xs mb-3">
+                            <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full font-bold uppercase tracking-wider">${post.category || 'Industry'}</span>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-calendar-alt text-blue-600"></i>
+                                <span>${new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                            </div>
+                        </div>
+                        <h2 class="text-xl font-bold mb-2 text-slate-900 group-hover:text-blue-600 transition leading-snug">${post.title}</h2>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3">${post.excerpt}</p>
+                    </div>
+                    <div class="flex items-center text-blue-600 font-bold text-sm group-hover:gap-2 transition">
+                        <span>Read Full Article</span>
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                    </div>
+                </article>
+            `).join('');
+
+            // Animate posts with GSAP
+            if (window.gsap) {
                 gsap.registerPlugin(ScrollTrigger);
                 document.querySelectorAll('.part-card').forEach((card, index) => {
                     card.style.opacity = '0';
@@ -160,24 +216,23 @@
                         delay: index * 0.1,
                         scrollTrigger: {
                             trigger: card,
-                            start: 'top 80%',
+                            start: 'top 85%',
                             toggleActions: 'play none none none'
                         }
                     });
                 });
-            } catch (error) {
-                console.error('Error loading blog posts:', error);
-                document.getElementById('blog-posts').innerHTML = '<div class="col-span-2 text-center py-16"><p class="text-red-300">Error loading blog posts</p></div>';
             }
         }
 
         // Animate hero on load
-        gsap.to('.reveal', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.2
-        });
+        if (window.gsap) {
+            gsap.to('.reveal', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.2
+            });
+        }
 
         // Load posts when page loads
         loadBlogPosts();

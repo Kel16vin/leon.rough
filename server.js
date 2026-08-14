@@ -56,6 +56,58 @@ db.exec(`
   )
 `);
 
+// Seed initial blog posts if empty
+const count = db.prepare('SELECT COUNT(*) as count FROM blog_posts').get().count;
+if (count === 0) {
+  const seedStmt = db.prepare(`
+    INSERT INTO blog_posts (title, excerpt, content, author, category, image, createdAt, updatedAt)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  const initialPosts = [
+    {
+      title: "Inside the 2026 Production Revolution: Hypercars & Next-Gen Assembly",
+      excerpt: "Discover how premier luxury automakers are combining lightweight carbon composite monocoques with 3D laser-guided assembly robotics to redefine automotive performance.",
+      content: `The automotive industry is currently experiencing one of its most transformative eras. Recent production lines for high-end luxury vehicles and hypercars have shifted toward ultra-lightweight carbon composite monocoques integrated with high-voltage multi-motor architectures.\n\nFrom automated robotic calibration to real-time torque vectoring alignment, modern assembly facilities utilize state-of-the-art optical scanners capable of detecting tolerances down to 0.001mm. This level of precision guarantees unprecedented aerodynamic efficiency and mechanical longevity.\n\nAt Elite Maintenance Services Ltd., our workshop equipment and technician training mirror these exact factory specifications, ensuring every vehicle brought to our bays receives world-class care.`,
+      author: "Elite Engineering Team",
+      category: "Car Production",
+      image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=800",
+      createdAt: "2026-08-10T10:00:00.000Z"
+    },
+    {
+      title: "Cutting-Edge Machinery: 5-Axis CNC & Robotic Diagnostics",
+      excerpt: "How 5-axis CNC milling machines, automated robotic diagnostic bays, and digital twin analytics elevate high-end vehicle maintenance and custom component fabrication.",
+      content: `Modern automotive repair requires far more than traditional hand tools. The integration of 5-axis CNC machining allows custom fabrication of rare and obsolete spare parts directly from 3D CAD models within hours.\n\nSimultaneously, robotic diagnostic bays conduct non-destructive ultrasound scans on suspension components, chassis welds, and engine blocks. These advanced machines build a complete "digital twin" of your vehicle to identify micro-fractures and thermal stress before they lead to catastrophic failure.\n\nOur workshop investment in cutting-edge diagnostic and fabrication machinery ensures your vehicle remains reliable under demanding driving conditions.`,
+      author: "Workshop Master Technician",
+      category: "Cutting-Edge Machinery",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      createdAt: "2026-08-12T14:30:00.000Z"
+    },
+    {
+      title: "Next-Gen Turbocharging & Hybrid Powertrains in Modern Vehicles",
+      excerpt: "An in-depth look at 48V electric turbochargers, dual-clutch transmission telemetry, and high-efficiency hybrid power units in today's flagship vehicles.",
+      content: `Electric turbocharging technology derived from Formula 1 racing is now making its way into modern production cars. By utilizing 48V electric motors to spool the turbine before exhaust gases build up, turbo lag is completely eliminated while boost efficiency increases by over 30%.\n\nMaintaining these complex powertrains requires specialized electronic calibration tools and fluid management systems. Understanding heat exchanger loops and battery thermal management is key to maintaining peak engine output.`,
+      author: "Automotive Research Dept.",
+      category: "Car Production",
+      image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=800",
+      createdAt: "2026-08-14T09:15:00.000Z"
+    },
+    {
+      title: "Heavy Industrial Machinery & Submersible Pump Telemetry",
+      excerpt: "Exploring how automated telemetry and heavy-duty diagnostic rigs maintain high-output borehole pumps and standby industrial power generators.",
+      content: `Beyond high-performance automotive vehicles, industrial power and water infrastructure rely heavily on specialized heavy machinery. Advanced telemetry sensors now monitor vibration, motor winding temperatures, and flow rates in real-time for submersible borehole systems and heavy standby diesel generators.\n\nOur engineering team specializes in preventive maintenance routines for these critical power and water installations, preventing downtime and extending equipment lifespan.`,
+      author: "Power & Energy Division",
+      category: "Industrial Machinery",
+      image: "images/borehole.png",
+      createdAt: "2026-08-14T11:45:00.000Z"
+    }
+  ];
+
+  initialPosts.forEach(post => {
+    seedStmt.run(post.title, post.excerpt, post.content, post.author, post.category, post.image, post.createdAt, post.createdAt);
+  });
+}
+
 function requireAdmin(req, res, next) {
   if (req.session && req.session.isAdmin) {
     return next();
